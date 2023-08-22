@@ -1,0 +1,10 @@
+[package]
+name = "clibr"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+
+[[bin]]  # Adicione esta seção para especificar um binário
+name = "clibr"
+path = "./src/clibr.rs"
