@@ -1,9 +1,12 @@
+use super::clibr_command_pair::CommandPair;
 use std::collections::HashMap;
+use std::rc::Rc;
+use std::vec::Vec;
 
-pub type MapOptions<'a> = HashMap<&'a str, &'a CommandPair>;
-pub type MapCommands<'a> = HashMap<&'a str, MapOptions<'a>>;
-pub type MapTags<'a> = HashMap<&'a str, bool>;
-pub type ListUpdates<'a> = Vec<&'a str>;
-pub type ListOptions<'a> = Vec<&'a str>;
-pub type ListText<'a> = Vec<&'a str>;
-pub type ForPair<'a> = (&'a str, &'a CommandPair);
+pub type MapOptions = HashMap<String, Rc<CommandPair>>;
+pub type MapCommands = HashMap<String, Rc<MapOptions>>;
+pub type MapTags = HashMap<String, bool>;
+pub type ListUpdates = Vec<String>;
+pub type ListOptions = Vec<String>;
+pub type ListText = Vec<String>;
+pub type ForPair = (String, CommandPair);

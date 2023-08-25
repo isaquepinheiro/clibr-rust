@@ -1,0 +1,4 @@
+# .rustfmt.toml
+
+[use]
+alphabetize = "none"

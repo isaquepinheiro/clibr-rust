@@ -1,34 +1,32 @@
-use std::io::{self, Write};
-
-pub const RESET: &'static str = "\\u001b[0m";
-pub const RED: &'static str = "\\u001b[31m";
-pub const GREEN: &'static str = "\\u001b[32m";
-pub const BLUE: &'static str = "\\u001b[34m";
-pub const YELLOW: &'static str = "\\u001b[33m";
-pub const MAGENTA: &'static str = "\\u001b[35m";
-pub const CYAN: &'static str = "\\u001b[36m";
-pub const WHITE: &'static str = "\\u001b[37m";
+pub const RESET: &'static str = "\x1B[0m";
+pub const RED: &'static str = "\x1B[31m";
+pub const GREEN: &'static str = "\x1B[32m";
+pub const BLUE: &'static str = "\x1B[34m";
+pub const YELLOW: &'static str = "\x1B[33m";
+pub const MAGENTA: &'static str = "\x1B[35m";
+pub const CYAN: &'static str = "\x1B[36m";
+pub const WHITE: &'static str = "\x1B[37m";
 
 pub fn print_create(title: &str, text: &str, message: &str) {
-    println!("{} {} {} {}", Self::GREEN, title, text, message, Self::RESET);
+    println!("{} {} {} {} {}", GREEN, title, text, message, RESET);
 }
 
 pub fn print_update(title: &str, text: &str, message: &str) {
-    println!("{} {} {} {} {}", Self::CYAN, title, text, message, Self::RESET);
+    println!("{} {} {} {} {}", CYAN, title, text, message, RESET);
 }
 
 pub fn print_version(message: &str) {
-    println!("{} {} {}", Self::MAGENTA, message, Self::RESET);
+    println!("{} {} {}", MAGENTA, message, RESET);
 }
 
 pub fn print_link(message: &str) {
-    println!("{} {} {}", Self::BLUE, message, Self::RESET);
+    println!("{} {} {}", BLUE, message, RESET);
 }
 
 pub fn print_alert(message: &str) {
-    println!("{} {} {}", Self::RED, message, Self::RESET);
+    println!("{} {} {}", RED, message, RESET);
 }
 
 pub fn print_help(message: &str) {
-    println!("{} {} {}", Self::YELLOW, message, Self::RESET);
+    println!("{} {} {}", YELLOW, message, RESET);
 }
