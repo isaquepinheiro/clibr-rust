@@ -1,10 +1,8 @@
-use clibr_main::main_cli;
 use std::env;
+use clibr_main::main_cli;
 
-mod clibr_cli;
-mod clibr_interfaces;
-mod clibr_main;
-mod commands;
+pub mod commands;
+pub mod clibr_main;
 
 fn main() {
     let args: Vec<String> = env::args().collect();

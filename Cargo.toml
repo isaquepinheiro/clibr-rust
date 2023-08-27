@@ -4,7 +4,11 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
+regex = "1.5.4"
 
-[[bin]]  # Adicione esta seção para especificar um binário
+[[bin]]
 name = "clibr"
 path = "./src/clibr.rs"
+
+[src]
+path = "src"

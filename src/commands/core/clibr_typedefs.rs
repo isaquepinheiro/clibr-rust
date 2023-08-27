@@ -9,4 +9,4 @@ pub type MapTags = HashMap<String, bool>;
 pub type ListUpdates = Vec<String>;
 pub type ListOptions = Vec<String>;
 pub type ListText = Vec<String>;
-pub type ForPair = (String, CommandPair);
+//pub type ForPair = (String, CommandPair);

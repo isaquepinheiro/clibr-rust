@@ -3,15 +3,15 @@ use super::core::clibr_print::print;
 use super::core::clibr_utils::utils;
 
 #[derive(Default)]
-pub struct CommandVersion {}
+pub struct CommandRepository {}
 
-impl CommandVersion {
+impl CommandRepository {
     pub fn new() -> Self {
         Self {}
     }
 }
 
-impl ICommand for CommandVersion {
+impl ICommand for CommandRepository {
     fn execute(&self, _dir_name: &str, _file_name: &str, _cli: &mut dyn ICli) -> bool {
         print::print_version(&utils::version());
         true
