@@ -54,7 +54,7 @@ impl CommandHelp {
             "\x1B[33mFor more information, please refer to the documentation.\x1B[0m".to_string(),
             "\x1B[34mhttps://dmfbr-en.docs-br.com\x1B[0m".to_string(),
             "".to_string(),
-        ];    
+        ];
 
         print::print_help(&print_text.join("\n"));
     }
@@ -86,7 +86,7 @@ impl CommandHelp {
             "\x1B[33mFor more information, please refer to the documentation.\x1B[0m".to_string(),
             "\x1B[34mhttps://dmfbr-en.docs-br.com\x1B[0m".to_string(),
             "".to_string(),
-        ];        
+        ];
 
         print::print_help(&print_text.join("\n"));
     }
@@ -112,7 +112,7 @@ impl CommandHelp {
             "\x1B[33mFor more information, please refer to the documentation.\x1B[0m".to_string(),
             "\x1B[34mhttps://dmfbr-en.docs-br.com\x1B[0m".to_string(),
             "".to_string(),
-        ];        
+        ];
 
         print::print_help(&print_text.join("\n"));
     }

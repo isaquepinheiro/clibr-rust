@@ -16,7 +16,8 @@ impl ICommand for CommandGenerateFormVCL {
         let unit_name: String = _file_name.to_ascii_lowercase();
         let template_file_path: String = format!("{}/vcl.project.form.pas", _cli.get_path_temp());
         let template_file_name: String = format!("{}/u{}.dfm", _dir_name, &unit_name);
-        let template_content: String = utils::read_from_file(&template_file_path).unwrap_or_default();
+        let template_content: String =
+            utils::read_from_file(&template_file_path).unwrap_or_default();
 
         if _file_name.is_empty() {
             print::print_alert("Invalid parameters!");
@@ -25,9 +26,10 @@ impl ICommand for CommandGenerateFormVCL {
 
         let is_success = utils::write_to_file(&template_file_name, &template_content);
         if is_success.is_ok() {
-            print::print_create("CREATE",
-                                 &template_file_name,
-                              &utils::get_size_file(&template_file_name).unwrap_or_default(),
+            print::print_create(
+                "CREATE",
+                &template_file_name,
+                &utils::get_size_file(&template_file_name).unwrap_or_default(),
             );
         }
         is_success.is_ok()

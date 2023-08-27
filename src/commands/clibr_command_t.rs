@@ -36,7 +36,7 @@ impl ICommand for CommandTemplates {
             "| pipe.pas             | Pipe (Transformation/Validation)          |".to_string(),
             "|----------------------|-------------------------------------------|".to_string(),
             "".to_string(),
-        ];        
+        ];
 
         print::print_help(&print_text.join("\n"));
         true

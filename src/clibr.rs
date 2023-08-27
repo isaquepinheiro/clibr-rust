@@ -1,8 +1,8 @@
-use std::env;
 use clibr_main::main_cli;
+use std::env;
 
-pub mod commands;
 pub mod clibr_main;
+pub mod commands;
 
 fn main() {
     let args: Vec<String> = env::args().collect();

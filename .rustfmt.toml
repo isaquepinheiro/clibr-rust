@@ -2,4 +2,4 @@
 
 tab_spaces = 4
 max_width = 100
-binop_separator = "VerticalAlignWithOperand"
+#binop_separator = "VerticalAlignWithOperand"

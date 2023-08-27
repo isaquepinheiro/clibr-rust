@@ -1,11 +1,10 @@
-use std::fs;
-use std::path::PathBuf;
-use std::io::{BufRead, BufReader, Write};
-use std::{fs::File, path::Path};
+use super::super::core::clibr_interfaces::{ICli, ICommand};
 use crate::commands::core::clibr_print::print;
 use crate::commands::core::clibr_utils::utils;
-use super::super::core::clibr_interfaces::{ICli, ICommand};
-
+use std::fs;
+use std::io::{BufRead, BufReader, Write};
+use std::path::PathBuf;
+use std::{fs::File, path::Path};
 
 #[derive(Default)]
 pub struct CommandUpdateDpr {}
@@ -23,21 +22,28 @@ impl ICommand for CommandUpdateDpr {
         let current_dir: PathBuf = fs::canonicalize(current_dir).unwrap_or(current_dir_clone);
 
         let mut dpr_file_name: String = String::new();
-        
+
         if let Ok(entries) = fs::read_dir(&current_dir) {
             for entry in entries.flatten() {
                 if entry.path().is_file() {
                     if let Some(ext) = entry.path().extension() {
                         if ext == "dpr" {
-                            let dpr_file_path: String = entry.path().parent().unwrap().to_string_lossy().into_owned();
-                            dpr_file_name = dpr_file_path.clone() + "\\" + entry.path().file_name().unwrap().to_str().unwrap();
+                            let dpr_file_path: String = entry
+                                .path()
+                                .parent()
+                                .unwrap()
+                                .to_string_lossy()
+                                .into_owned();
+                            dpr_file_name = dpr_file_path.clone()
+                                + "\\"
+                                + entry.path().file_name().unwrap().to_str().unwrap();
                             break;
                         }
                     }
                 }
             }
         }
-        
+
         if dpr_file_name.is_empty() {
             print::print_alert("Error: DPR file not found.");
             return false;
@@ -80,7 +86,9 @@ impl ICommand for CommandUpdateDpr {
         let mut semicolon_index: usize = match semicolon_index {
             Some(index) => index,
             None => {
-                print::print_alert("Error: Semicolon not found after the 'uses' clause in the DPR file.");
+                print::print_alert(
+                    "Error: Semicolon not found after the 'uses' clause in the DPR file.",
+                );
                 return false;
             }
         };
@@ -97,7 +105,7 @@ impl ICommand for CommandUpdateDpr {
             }
         }
 
-        // Replace "," to ";"    
+        // Replace "," to ";"
         lines[semicolon_index] = lines[semicolon_index].replace(',', ";");
 
         if let Ok(mut file) = File::create(&dpr_file_name) {
@@ -107,16 +115,20 @@ impl ICommand for CommandUpdateDpr {
         }
 
         let update: String = format!("{}/{}", _dir_name, dpr_file_name);
-        print::print_update("UPDATE", 
-                             &update, 
-                          &utils::get_size_file(&dpr_file_name).unwrap_or_default());
+        print::print_update(
+            "UPDATE",
+            &update,
+            &utils::get_size_file(&dpr_file_name).unwrap_or_default(),
+        );
 
         true
     }
 }
 
 fn equals_ignore_case(str1: &str, str2: &str) -> bool {
-    str1.len() == str2.len() && str1.chars()
-                                    .zip(str2.chars())
-                                    .all(|(c1, c2)| c1.to_lowercase().eq(c2.to_lowercase()))
+    str1.len() == str2.len()
+        && str1
+            .chars()
+            .zip(str2.chars())
+            .all(|(c1, c2)| c1.to_lowercase().eq(c2.to_lowercase()))
 }

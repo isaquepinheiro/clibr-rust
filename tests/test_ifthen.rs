@@ -3,7 +3,6 @@ mod clibr_ifthen;
 use crate::clibr_ifthen::IfThen;
 
 #[cfg(test)]
-
 #[test]
 fn if_then_with_bool() {
     let if_true: IfThen<bool> = IfThen::new().when(true).then(true).else_or(false);
@@ -24,8 +23,14 @@ fn if_then_with_float() {
 
 #[test]
 fn if_then_with_string() {
-    let if_true: IfThen<String> = IfThen::new().when(true).then("True".to_string()).else_or("False".to_string());
-    let if_false: IfThen<String> = IfThen::new().when(false).then("True".to_string()).else_or("False".to_string());
+    let if_true: IfThen<String> = IfThen::new()
+        .when(true)
+        .then("True".to_string())
+        .else_or("False".to_string());
+    let if_false: IfThen<String> = IfThen::new()
+        .when(false)
+        .then("True".to_string())
+        .else_or("False".to_string());
 
     assert_eq!(if_true.evaluate(), "True");
     assert_eq!(if_false.evaluate(), "False");

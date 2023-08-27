@@ -18,10 +18,11 @@ impl ICommand for CommandTransformPipe {
             print::print_alert("Invalid parameters!");
             return false;
         }
-        let unit_name: String = {_file_name.to_lowercase()};
-        let camel_casename: String = format!("{}{}", _file_name[0..1].to_uppercase(), &_file_name[1..]);
+        let unit_name: String = { _file_name.to_lowercase() };
+        let camel_casename: String =
+            format!("{}{}", _file_name[0..1].to_uppercase(), &_file_name[1..]);
         let class_name: String = format!("TParse{}Pipe", &camel_casename);
-        let mut source_path: String = {_dir_name.to_string()};
+        let mut source_path: String = { _dir_name.to_string() };
 
         if source_path.is_empty() || source_path == "." {
             source_path = format!("./src/pipes/{}", _file_name).to_string();
@@ -31,21 +32,25 @@ impl ICommand for CommandTransformPipe {
             print::print_alert("Failed to create directory!");
             return false;
         }
-        
+
         let template_file_path: String = format!("{}/pipe.pas", _cli.get_path_temp());
         let template_file_name: String = format!("{}/{}pipe.pas", &source_path, &unit_name);
-        let template_content: String = utils::read_from_file(&template_file_path).unwrap_or_default();
-        let modified_content: String = template_content.to_string()
+        let template_content: String =
+            utils::read_from_file(&template_file_path).unwrap_or_default();
+        let modified_content: String = template_content
+            .to_string()
             .replace("{pipeName}", &class_name);
-        
+
         if fs::write(&template_file_name, modified_content).is_err() {
             print::print_alert("Failed to write modified content to file!");
             return false;
         }
-        
-        print::print_create("CREATE", 
-                            &template_file_name, 
-                            &utils::get_size_file(&template_file_name).unwrap_or_default());
+
+        print::print_create(
+            "CREATE",
+            &template_file_name,
+            &utils::get_size_file(&template_file_name).unwrap_or_default(),
+        );
 
         // List Update DPR
         let update: String = format!(
@@ -53,7 +58,7 @@ impl ICommand for CommandTransformPipe {
             &unit_name, &_file_name, &unit_name
         );
         _cli.set_update(update);
-        
+
         true
     }
 }

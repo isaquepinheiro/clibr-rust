@@ -44,14 +44,14 @@ impl ICommand for CommandAll {
     }
 }
 
-
 impl CommandAll {
     pub fn new() -> Self {
         Self {}
     }
 
     pub fn create_module(&self, dir_name: &str, file_name: &str, cli: &mut dyn ICli) {
-        let command_pair: Option<&Rc<CommandPair>> = cli.get_commands().get("g").and_then(|map| map.get("m"));
+        let command_pair: Option<&Rc<CommandPair>> =
+            cli.get_commands().get("g").and_then(|map| map.get("m"));
         if let Some(command_pair) = command_pair {
             let command: Rc<dyn ICommand> = command_pair.get_command();
             let _is_success: bool = command.execute(dir_name, file_name, cli);
@@ -59,7 +59,8 @@ impl CommandAll {
     }
 
     pub fn create_controller(&self, dir_name: &str, file_name: &str, cli: &mut dyn ICli) {
-        let command_pair: Option<&Rc<CommandPair>> = cli.get_commands().get("g").and_then(|map| map.get("c"));
+        let command_pair: Option<&Rc<CommandPair>> =
+            cli.get_commands().get("g").and_then(|map| map.get("c"));
         if let Some(command_pair) = command_pair {
             let command: Rc<dyn ICommand> = command_pair.get_command();
             let _is_success: bool = command.execute(dir_name, file_name, cli);
@@ -67,7 +68,8 @@ impl CommandAll {
     }
 
     pub fn create_service(&self, dir_name: &str, file_name: &str, cli: &mut dyn ICli) {
-        let command_pair: Option<&Rc<CommandPair>> = cli.get_commands().get("g").and_then(|map| map.get("s"));
+        let command_pair: Option<&Rc<CommandPair>> =
+            cli.get_commands().get("g").and_then(|map| map.get("s"));
         if let Some(command_pair) = command_pair {
             let command: Rc<dyn ICommand> = command_pair.get_command();
             let _is_success: bool = command.execute(dir_name, file_name, cli);
@@ -75,7 +77,8 @@ impl CommandAll {
     }
 
     pub fn create_route_handle_horse(&self, dir_name: &str, file_name: &str, cli: &mut dyn ICli) {
-        let command_pair: Option<&Rc<CommandPair>> = cli.get_options_internal().get("horse-handler");
+        let command_pair: Option<&Rc<CommandPair>> =
+            cli.get_options_internal().get("horse-handler");
         if let Some(command_pair) = command_pair {
             let command: Rc<dyn ICommand> = command_pair.get_command();
             let _is_success: bool = command.execute(dir_name, file_name, cli);

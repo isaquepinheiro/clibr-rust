@@ -220,7 +220,9 @@ impl Cli {
         );
         self.options_internal.insert(
             "horse-app".to_string(),
-            Rc::new(CommandPair::new(Rc::new(CommandGenerateProjectHorse::new()))),
+            Rc::new(CommandPair::new(
+                Rc::new(CommandGenerateProjectHorse::new()),
+            )),
         );
         self.options_internal.insert(
             "horse-handler".to_string(),
